@@ -70,7 +70,7 @@ function isPalindrome (str){
 console.log("Es palindromo: ", isPalindrome(("anita lava la tina").replaceAll("","")))
 
 
-const str [a,b,c,d,e];
+let str = ["a", "b", "c", "d", "e"];
 console.log(str[0]); // "a"
 console.log(str[3]); // "d"
 str.forEach(letter => console.log(letter));
