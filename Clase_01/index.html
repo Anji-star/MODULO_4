@@ -1,11 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Viajes</title>
 </head>
 <body>
-    <p>Hola</p>
+    <script>
+
+    const costosDestino = {
+            Paris: 500,
+            Londres: 400,
+            "New York": 600
+        };
+
+        const costosTransporte = {
+            Avión: 200,
+            Tren: 100
+        };
+
+        const destino = prompt("Destino (Paris, Londres, New York):");
+        const fecha = prompt("Fecha del viaje (YYYY-MM-DD):");
+        const transporte = prompt("Transporte (Avión, Tren):");
+
+        const costoDestino = costosDestino[destino] || 0;
+        const costoTransporte = costosTransporte[transporte] || 0;
+        const costoTotal = costoDestino + costoTransporte;
+
+        alert(
+            `📌 Viaje registrado:\n\nDestino: ${destino}\nFecha: ${fecha}\nTransporte: ${transporte}\nCosto total: $${costoTotal} MXN`
+        );
+
+    </script>
 </body>
 </html>

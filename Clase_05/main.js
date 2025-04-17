@@ -80,3 +80,74 @@ str.pop(); // Elimina "e"
 console.log(str);
 const upperCaseStr = str.map(letter => letter.toUpperCase());
 console.log(upperCaseStr); // ["A", "B", "C", "D", "E"]
+const arreglo = [1, 2, 3, 4, 5, 6];
+
+console.log("Suma par arreglo: ", tieneParconSuma(arreglo, 12));
+
+const corchetes = [
+    "ghugyjgjghj",
+    "ab[c[d]e]f",
+    "ab[c[d]e",
+    "ab[c[d]]e]",
+    "a]b[c",
+    "data[info[level1[level2]]]done",
+    "x[y[z]w]k",
+    "a[b]c"
+];
+
+const comparaRec = (str, index = 0, open = 0) => {
+
+    if (index === str.length) {
+        return open === 0;
+    }
+
+    const char = str[index];
+
+    if (char === '[') {
+        return comparaRec(str, index + 1, open + 1);
+    } else if (char === ']') {
+        if (open === 0) return false; // bracket cerrado sin abrir
+        return comparaRec(str, index + 1, open - 1);
+    } else {
+        return comparaRec(str, index + 1, open);
+    }
+}
+
+const comparaPunt = (str) => {
+    let left = 0;
+    let right = str.length - 1;
+    let balance = 0;
+
+    while (left <= right) {
+        if (str[left] === '[') {
+            balance++;
+
+            // Buscar cierre correspondiente desde la derecha
+            while (right > left) {
+                if (str[right] === ']') {
+                    balance--;
+                    right--; // Cerramos este ] y lo ignoramos después
+                    break;
+                }
+                right--;
+            }
+
+            // Si no encontramos un cierre adecuado
+            if (balance > 0 && right <= left) return false;
+        }
+
+        // Si encontramos un cierre sin apertura previa
+        if (str[left] === ']' && balance <= 0) {
+            return false;
+        }
+
+        left++;
+    }
+
+    return balance === 0;
+}
+
+
+/* corchetes.forEach(item => console.log(`${comparaRec(item) ? `Exito al procesar cadena ${item}` : `Error de sintaxis ${item}`}`)); */
+
+corchetes.forEach(item => console.log(`${comparaPunt(item) ? `Exito al procesar cadena ${item}` : `Error de sintaxis ${item}`}`));
